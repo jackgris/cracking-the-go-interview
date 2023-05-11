@@ -1,4 +1,4 @@
-# cracking-the-go-interview
+# Cracking the Go Interview
 In this repository, I will try to save normals questions and solved algorithms related to an interview about a Go developer position.
 
 ## Interview Questions
