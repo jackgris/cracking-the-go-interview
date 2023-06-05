@@ -13,6 +13,7 @@ func main() {
 	tree.InsertElement(1)
 	tree.InsertElement(6)
 	tree.String()
+	tree.SortedNodes()
 }
 
 // TreeNode class
@@ -71,6 +72,22 @@ func inOrderTraverseTree(treeNode *TreeNode, function func(int)) {
 		inOrderTraverseTree(treeNode.leftNode, function)
 		function(treeNode.value)
 		inOrderTraverseTree(treeNode.rightNode, function)
+	}
+}
+
+// SortedNodes return the values of nodes ordered from smaller to big
+func (tree *BinarySearchTree) SortedNodes() []int {
+	sorted := []int{}
+	sortedNodes(tree.rootNode, &sorted)
+	fmt.Println(sorted)
+	return sorted
+}
+
+func sortedNodes(node *TreeNode, sorted *[]int) {
+	if node != nil {
+		sortedNodes(node.leftNode, sorted)
+		*sorted = append(*sorted, node.value)
+		sortedNodes(node.rightNode, sorted)
 	}
 }
 
