@@ -54,19 +54,15 @@ func main() {
 }
 
 // func reverse(x int) int {
-
 // 	r := ""
 // 	if x < 0 {
 // 		r += "-"
 // 		x -= (x * 2)
 // 	}
-
 // 	c := strconv.Itoa(x)
-
 // 	for i := len(c) - 1; i >= 0; i-- {
 // 		r += string(c[i])
 // 	}
-
 // 	x, _ = strconv.Atoi(r)
 // 	if isOverFlow(x) {
 // 		return 0
@@ -81,23 +77,8 @@ func main() {
 // 	if min <= y && y <= max {
 // 		return false
 // 	}
-
 // 	return true
 // }
-
-func reverse(x int) int {
-	s := 0
-	for x != 0 {
-		t := x % 10
-		x = x / 10
-		s = s*10 + t
-	}
-
-	if s < math.MinInt32 || s > math.MaxInt32 {
-		return 0
-	}
-	return s
-}
 
 // func reverse(x int) int {
 // 	signMultiplier := 1
@@ -105,12 +86,10 @@ func reverse(x int) int {
 // 		signMultiplier = -1
 // 		x = signMultiplier * x
 // 	}
-
 // 	var result int
 // 	for x > 0 {
 // 		// Add the current digit into result
 // 		result = result*10 + x%10
-
 // 		// Check if the result is within MaxInt32 and MinInt32 bounds
 // 		if signMultiplier*result >= math.MaxInt32 || signMultiplier*result <= math.MinInt32 {
 // 			return 0
@@ -120,3 +99,20 @@ func reverse(x int) int {
 // 	// Restore to original sign of number (+ or -)
 // 	return signMultiplier * result
 // }
+
+func reverse(x int) int {
+	result := 0
+	for x != 0 {
+		// Extract last digit from x using the mod operator. Example: currentDigit = x%10 = 369 % 10 = 9.
+		currentDidit := x % 10
+		// Put currentDigit to its correct base position in result. Example: result = result * 10 + currentDigit = 0 * 10 + 9 = 9.
+		result = result*10 + currentDidit
+		// Now that we have processed the digit we need to remove it from x. Example: x = x/10 = 369/10 = 36.
+		x = x / 10
+	}
+
+	if result < math.MinInt32 || result > math.MaxInt32 {
+		return 0
+	}
+	return result
+}
