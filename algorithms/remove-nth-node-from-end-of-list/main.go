@@ -119,6 +119,7 @@ func (l *ListNode) Lenght() int {
 	return count
 }
 
+/*
 func removeNthFromEnd(head *ListNode, n int) *ListNode {
 	listNodes := &ListNode{-1, head}
 
@@ -144,4 +145,30 @@ func removeNthFromEnd(head *ListNode, n int) *ListNode {
 		return &ListNode{}
 	}
 	return listNodes.Next
+}
+*/
+
+func removeNthFromEnd(head *ListNode, n int) *ListNode {
+	dummy := &ListNode{Next: head}
+	// the 2nd pointer will advance only after
+	// we processed the first n nodes
+	first, second := dummy, dummy
+
+	var count int
+	for first.Next != nil {
+		first = first.Next
+
+		count++
+		if count > n {
+			second = second.Next
+		}
+	}
+
+	second.Next = second.Next.Next
+
+	if dummy.Next == nil {
+		return &ListNode{}
+	}
+
+	return dummy.Next
 }
